@@ -7,6 +7,10 @@
     <title>Tables de multiplication</title>
 </head>
 <body>
+
+<a href="classique.php">Mode apprentissage</a>
+<a href="revision.php">Mode révision</a>
+
     
 </body>
 </html>
