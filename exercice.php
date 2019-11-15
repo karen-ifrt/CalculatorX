@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['score'])){
-$_SESSION['score'] = 0;
+if (!isset($_SESSION['score'])) {
+    $_SESSION['score'] = 0;
 }
-if(!isset($_SESSION['try'])){
-$_SESSION['try'] = 0;
+if (!isset($_SESSION['try'])) {
+    $_SESSION['try'] = 0;
 }
 
 ?>
@@ -18,91 +18,105 @@ $_SESSION['try'] = 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Exercice</title>
+    <link rel="stylesheet" href="assets/style.css">
+
 </head>
 
 <body>
 
-    <div class="exo">
+    <div class="content">
 
-        <?php
+        <div class="header">
+            <div class="title">
+                <p>CALCU</p>
+                <img src="img/logo-calcX.png" alt="logo">
+                <p>LATOR</p>
+            </div>
+        </div>
 
-        if (isset($_POST["submit"])) {
-            $number = $_POST['tables'];
 
-            echo '<h1>Table de ' . $number . '</h1>';
+        <div class="exo">
 
-            $random = rand(1, 10);
-            $result = $number * $random;
-            $_SESSION['random'] = $random;
-            $_SESSION['number'] = $number;
-            echo $number . " x " . $random . "<br>";
-        }
+            <?php
 
-        ?>
+            if (isset($_POST["submit"])) {
+                $number = $_POST['tables'];
+
+                echo '<h1>Table de ' . $number . '</h1>';
+                echo '<div class="divider"></div>';
+
+                $random = rand(1, 10);
+                $result = $number * $random;
+                $_SESSION['random'] = $random;
+                $_SESSION['number'] = $number;
+                echo '<p class="calcul">' . $number . " x " . $random . "</p><br>";
+            }
+
+            ?>
+
+
+
+
+            <?php
+
+            if (isset($_POST["form"])) {
+
+                $value = $_POST["reponse"];
+                $result = $_SESSION['number'] * $_SESSION['random'];
+                if ($value == $result) {
+                    if (isset($_POST["reponse"])) {
+                        $number = $_SESSION['number'];
+                        echo '<h1>Table de ' . $number . '</h1>';
+                        echo '<div class="divider"></div>';
+                        $random = rand(1, 10);
+                        $result = $number * $random;
+                        $_SESSION['random'] = $random;
+                        $_SESSION['number'] = $number;
+                        echo '<p class="calcul">' . $number . " x " . $random . "</p><br>";
+                    }
+                    $_SESSION['score'] += 1;
+                    echo '<p class="right-answer">Bonne réponse !</p>';
+                    $_SESSION['try'] += 1;
+                } else {
+                    if (isset($_POST["reponse"])) {
+                        $number = $_SESSION['number'];
+                        echo '<h1>Table de ' . $number . '</h1>';
+                        echo '<div class="divider"></div>';
+                        $random = rand(1, 10);
+                        $_SESSION['result'] = $result;
+                        $result = $number * $random;
+                        $_SESSION['random'] = $random;
+                        $_SESSION['number'] = $number;
+                        echo '<p class="calcul">' . $number . " x " . $random . "</p><br>";
+                    }
+                    echo '<p class="wrong-answer"><span>Mauvaise réponse !</span><br><br> La bonne réponse était ' . $_SESSION['result'] . '</p>';
+                    $_SESSION['try'] += 1;
+                }
+            }
+
+            ?>
+
+            <form action="exercice.php" method="post" role="form">
+                <input type="number" name="reponse" class="input-value">
+                <input type="submit" name="form" value="VALIDER" class="validate">
+            </form>
+
+            <?php
+
+            if ($_SESSION['try'] == 10) {
+                echo '<p class="score-info">Votre score est de : ' . $_SESSION['score'] . ' sur 10 !</p>';
+            }            ?>
+
+            <div class="retry">
+                <a href="retour.php"><img src="img/the-btn.png" alt="Retour">
+                    <p>RÉESSAYER</p>
+                </a>
+            </div>
+
+        </div>
 
     </div>
 
-
-
-    <?php
-
-    if (isset($_POST["form"])) {
-
-        $value = $_POST["reponse"];
-        $result = $_SESSION['number'] * $_SESSION['random'];
-        if ($value == $result) {
-            if (isset($_POST["reponse"])) {
-                $number = $_SESSION['number'];
-                echo '<h1>Table de ' . $number . '</h1>';
-                $random = rand(1, 10);
-                $result = $number * $random;
-                $_SESSION['random'] = $random;
-                $_SESSION['number'] = $number;
-                echo $number . " x " . $random . "<br>";
-            }
-            $_SESSION['score'] += 1;
-            echo "score : " . $_SESSION['score'];
-            echo '<br>';
-            echo '<p>Bonne réponse</p>';
-            echo '<br>';
-            $_SESSION['try'] += 1;
-            echo "essai : " . $_SESSION['try'];
-        } else {
-            if (isset($_POST["reponse"])) {
-                $number = $_SESSION['number'];
-                echo '<h1>Table de ' . $number . '</h1>';
-                $random = rand(1, 10);
-                $_SESSION['result'] = $result;
-                $result = $number * $random;
-                $_SESSION['random'] = $random;
-                $_SESSION['number'] = $number;
-                echo $number . " x " . $random . "<br>";
-            }
-            echo "score : " . $_SESSION['score'];
-            echo '<br>';
-            echo '<p class="bad-answer">Mauvaise réponse. La bonne réponse était ' . $_SESSION['result'] . '</p>';
-            echo '<br>';
-            $_SESSION['try'] += 1;
-            echo "essai : " . $_SESSION['try'];
-        }
-
-        if($_SESSION['try'] == 10){
-            echo '<br>';
-            echo 'essais finis';
-            echo '<br>';
-            echo 'Votre score est de : ' . $_SESSION['score'];
-        }
-    }
-
-    ?>
-
-    <form action="exercice.php" method="post" role="form">
-        <input type="number" name="reponse">
-        <input type="submit" name="form" value="VALIDER">
-    </form>
-
-    <a href="retour.php">RETOUR</a>
-    <a href="retour.php">REESSAYER</a>
 
 </body>
 
