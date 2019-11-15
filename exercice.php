@@ -63,7 +63,7 @@ $_SESSION['try'] = 0;
             $_SESSION['score'] += 1;
             echo "score : " . $_SESSION['score'];
             echo '<br>';
-            echo 'Bonne réponse';
+            echo '<p>Bonne réponse</p>';
             echo '<br>';
             $_SESSION['try'] += 1;
             echo "essai : " . $_SESSION['try'];
@@ -80,7 +80,7 @@ $_SESSION['try'] = 0;
             }
             echo "score : " . $_SESSION['score'];
             echo '<br>';
-            echo 'Mauvaise réponse. La bonne réponse était ' . $_SESSION['result'];
+            echo '<p class="bad-answer">Mauvaise réponse. La bonne réponse était ' . $_SESSION['result'] . '</p>';
             echo '<br>';
             $_SESSION['try'] += 1;
             echo "essai : " . $_SESSION['try'];

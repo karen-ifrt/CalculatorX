@@ -25,7 +25,6 @@
         for ($i = 1; $i < 16; $i++) { 
             echo '<option value="'. $i . '" name="table' . $i . '">Table de ' . $i . '</option>'; 
         }
-
     ?>
  
     </select>
