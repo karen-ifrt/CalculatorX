@@ -18,6 +18,7 @@
 
 <form action="classique.php" method="post" role="form">
     <select name="tables" id="tables">
+        <option value="Choix">Choisis une table</option>
 
     <?php
         $reponse = $_POST["tables"];
