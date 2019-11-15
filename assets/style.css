@@ -309,24 +309,13 @@ option {
 
 .score-info {
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 40px;
+    color: #333;
 }
 
 /* ****************** */
 /* PARTIE ACCUEIL */
 /* ****************** */
-
-/* .home-list img {
-    width: 100px;
-    height: auto;
-}
-
-.home-list {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
 
 .home-list {
     position: relative;
@@ -353,6 +342,7 @@ option {
     text-transform: uppercase;
     font-size: 25px;
 }
+
 .home-list .training {
     font-family: "SOT", sans-serif;
     position: absolute;
