@@ -1,5 +1,11 @@
 <?php
 session_start();
+if(!isset($_SESSION['score'])){
+$_SESSION['score'] = 0;
+}
+if(!isset($_SESSION['try'])){
+$_SESSION['try'] = 0;
+}
 
 ?>
 
@@ -18,9 +24,7 @@ session_start();
 
     <div class="exo">
 
-
         <?php
-
 
         if (isset($_POST["submit"])) {
             $number = $_POST['tables'];
@@ -33,6 +37,7 @@ session_start();
             $_SESSION['number'] = $number;
             echo $number . " x " . $random . "<br>";
         }
+
         ?>
 
     </div>
@@ -55,18 +60,37 @@ session_start();
                 $_SESSION['number'] = $number;
                 echo $number . " x " . $random . "<br>";
             }
+            $_SESSION['score'] += 1;
+            echo "score : " . $_SESSION['score'];
+            echo '<br>';
             echo 'Bonne réponse';
+            echo '<br>';
+            $_SESSION['try'] += 1;
+            echo "essai : " . $_SESSION['try'];
         } else {
             if (isset($_POST["reponse"])) {
                 $number = $_SESSION['number'];
                 echo '<h1>Table de ' . $number . '</h1>';
                 $random = rand(1, 10);
+                $_SESSION['result'] = $result;
                 $result = $number * $random;
                 $_SESSION['random'] = $random;
                 $_SESSION['number'] = $number;
                 echo $number . " x " . $random . "<br>";
             }
-            echo 'Mauvaise réponse';
+            echo "score : " . $_SESSION['score'];
+            echo '<br>';
+            echo 'Mauvaise réponse. La bonne réponse était ' . $_SESSION['result'];
+            echo '<br>';
+            $_SESSION['try'] += 1;
+            echo "essai : " . $_SESSION['try'];
+        }
+
+        if($_SESSION['try'] == 10){
+            echo '<br>';
+            echo 'essais finis';
+            echo '<br>';
+            echo 'Votre score est de : ' . $_SESSION['score'];
         }
     }
 
@@ -77,7 +101,8 @@ session_start();
         <input type="submit" name="form" value="VALIDER">
     </form>
 
-    <a href="revision.php">RETOUR</a>
+    <a href="retour.php">RETOUR</a>
+    <a href="retour.php">REESSAYER</a>
 
 </body>
 
