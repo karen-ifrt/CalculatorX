@@ -33,20 +33,20 @@ session_start();
 
 
         <form action="exercice.php" method="post" role="form">4
-        <div class="img-list">
+            <div class="img-list">
 
-        <img src="img/liste.png" alt="Bouton">
-            <select name="tables" id="tables">
+                <img src="img/liste.png" alt="Bouton">
+                <select name="tables" id="tables">
 
-                <?php
-                for ($i = 1; $i < 16; $i++) {
-                    echo '<option value="' . $i . '" name="table' . $i . '">Table de ' . $i . '</option>';
-                }
-                ?>
+                    <?php
+                    for ($i = 1; $i < 16; $i++) {
+                        echo '<option value="' . $i . '" name="table' . $i . '">Table de ' . $i . '</option>';
+                    }
+                    ?>
 
-            </select>
+                </select>
 
-            <input type="submit" name="submit" value="RÉVISER" class="btn-play">
+                <input type="submit" name="submit" value="RÉVISER" class="btn-play">
 
         </form>
 
@@ -60,13 +60,14 @@ session_start();
 
 
         ?>
-            </div>
+    </div>
 
-        <div class="return">
-            <a href="index.php"><img src="img/the-btn.png" alt="Retour">
-                <p>RETOUR</p>
-            </a>
-        </div>
+    <div class="return">
+        <a href="index.php" class="hvr-bounce-out">
+            <img src="img/the-btn.png" alt="Retour">
+            <p>RETOUR</p>
+        </a>
+    </div>
     </div>
 
 

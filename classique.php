@@ -68,7 +68,7 @@
 
 
             <div class="return">
-                <a href="index.php"><img src="img/the-btn.png" alt="Retour">
+                <a href="index.php" class="hvr-bounce-out"><img src="img/the-btn.png" alt="Retour">
                     <p>RETOUR</p>
                 </a>
             </div>

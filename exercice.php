@@ -64,6 +64,7 @@ if (!isset($_SESSION['try'])) {
 
                 $value = $_POST["reponse"];
                 $result = $_SESSION['number'] * $_SESSION['random'];
+                
                 if ($value == $result) {
                     if (isset($_POST["reponse"])) {
                         $number = $_SESSION['number'];
@@ -109,7 +110,7 @@ if (!isset($_SESSION['try'])) {
             }            ?>
 
             <div class="retry">
-                <a href="retour.php"><img src="img/the-btn.png" alt="Retour">
+                <a href="retour.php" class="hvr-bounce-out"><img src="img/the-btn.png" alt="Retour">
                     <p>RÉESSAYER</p>
                 </a>
             </div>
